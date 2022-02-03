@@ -1,4 +1,4 @@
-package io.oodles.emailscheduler.service.jobs;
+package io.oodles.emailscheduler.scheduler;
 
 import java.nio.charset.StandardCharsets;
 
@@ -8,8 +8,9 @@ import javax.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
-public class EmailService {
+import org.springframework.stereotype.Component;
+@Component
+public class Email {
 
 	@Autowired
 	JavaMailSender mailSender;

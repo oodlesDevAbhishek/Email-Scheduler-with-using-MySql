@@ -1,4 +1,4 @@
-package io.oodles.emailscheduler.service.jobs;
+package io.oodles.emailscheduler.scheduler;
 
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
@@ -6,11 +6,13 @@ import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.scheduling.quartz.QuartzJobBean;
+import org.springframework.stereotype.Component;
 
-public class EmailJob extends QuartzJobBean{
+@Component
+public class ScheduledEmailJob extends QuartzJobBean{
 
 	@Autowired
-	private EmailService emailService;
+	private Email email;
 	@Autowired
 	private MailProperties mailProperties;
 	 
@@ -23,7 +25,7 @@ public class EmailJob extends QuartzJobBean{
         String body = jobDataMap.getString("body");
         String recipientEmail = jobDataMap.getString("email");
 
-        emailService.sendMail(mailProperties.getUsername(), recipientEmail, subject, body);
+        email.sendMail(mailProperties.getUsername(), recipientEmail, subject, body);
 	}
 	
 	
