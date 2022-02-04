@@ -18,8 +18,6 @@ public class MySchedulerListener implements SchedulerListener {
 	@Autowired
 	private SchedularInfoRepository schedularInfoRepository;
 
-	
-	
 	@Override
 	public void jobScheduled(Trigger trigger) {
 		// TODO Auto-generated method stub
@@ -36,11 +34,11 @@ public class MySchedulerListener implements SchedulerListener {
 	public void triggerFinalized(Trigger trigger) {
 		System.out.println("cleanup after job execution.....");
 		JobKey jobKey = trigger.getJobKey();
-		
+
 		String jobName = jobKey.getName();
-		
+
 		ScheduledInfo persistedScheduledInfo = schedularInfoRepository.findByJobName(jobName);
-		if(persistedScheduledInfo!=null)
+		if (persistedScheduledInfo != null)
 			schedularInfoRepository.delete(persistedScheduledInfo);
 	}
 

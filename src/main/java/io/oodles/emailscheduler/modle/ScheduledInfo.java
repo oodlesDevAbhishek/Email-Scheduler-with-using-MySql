@@ -28,6 +28,8 @@ public class ScheduledInfo {
 	@Column(unique = true)
 	private String jobName;
 	private String jobGroup;
+	private String jobKey;
+	private String triggerKey;
 	@Email
 	private String email;
 	private String subject;

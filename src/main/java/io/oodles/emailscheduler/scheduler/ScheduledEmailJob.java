@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class ScheduledEmailJob extends QuartzJobBean{
 
 	@Autowired
-	private Email email;
+	private EmailSenderProperties emailSenderProperties;
 	@Autowired
 	private MailProperties mailProperties;
 	 
@@ -25,7 +25,7 @@ public class ScheduledEmailJob extends QuartzJobBean{
         String body = jobDataMap.getString("body");
         String recipientEmail = jobDataMap.getString("email");
 
-        email.sendMail(mailProperties.getUsername(), recipientEmail, subject, body);
+        emailSenderProperties.sendMail(mailProperties.getUsername(), recipientEmail, subject, body);
 	}
 	
 	
